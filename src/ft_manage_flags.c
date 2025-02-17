@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+//====<[ Prototypes: ]>=========================================================
 static int	ft_skip_rep(char *s, char c);
 
+//====<[ ft_manage_flags: ]>====================================================
 int	ft_manage_flags(char *s, t_data *data)
 {
 	int	i;
@@ -37,6 +39,7 @@ int	ft_manage_flags(char *s, t_data *data)
 	return (i);
 }
 
+//====<[ ft_skip_rep: ]>========================================================
 static int	ft_skip_rep(char *s, char c)
 {
 	if (*s && *s == c)

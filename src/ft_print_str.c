@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+//====<[ Prototypes: ]>=========================================================
 static int	ft_print_str_width(int len, t_data *data);
 static int	ft_print_str_prec(char *s, int prec);
 
+//====<[ ft_print_str: ]>=======================================================
 int	ft_print_str(char *s, t_data *data)
 {
 	int		l;
@@ -39,6 +41,7 @@ int	ft_print_str(char *s, t_data *data)
 	return (l);
 }
 
+//====<[ ft_print_str_width: ]>=================================================
 static int	ft_print_str_width(int len, t_data *data)
 {
 	int	l;
@@ -53,6 +56,7 @@ static int	ft_print_str_width(int len, t_data *data)
 	return (l);
 }
 
+//====<[ ft_print_str_prec: ]>==================================================
 static int	ft_print_str_prec(char *s, int prec)
 {
 	int	i;

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+//====<[ ft_size_in_base: ]>====================================================
 int	ft_size_in_base(unsigned long int nb, int b_len, int isaddr)
 {
 	if (nb == 0 && isaddr)
@@ -20,6 +21,7 @@ int	ft_size_in_base(unsigned long int nb, int b_len, int isaddr)
 	return (0);
 }
 
+//====<[ ft_print_in_b: ]>======================================================
 int	ft_print_in_b(unsigned long int nb, char *base, int b_len, int isaddr)
 {
 	if (nb == 0 && isaddr)

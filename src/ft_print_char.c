@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+//====<[ ft_print_width: ]>=====================================================
 static int	ft_print_width_c(t_data *data)
 {
 	int	l;
@@ -24,6 +25,7 @@ static int	ft_print_width_c(t_data *data)
 	return (l);
 }
 
+//====<[ ft_print_char: ]>======================================================
 int	ft_print_char(char c, t_data *data)
 {
 	int	l;

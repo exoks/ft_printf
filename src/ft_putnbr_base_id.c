@@ -11,11 +11,13 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+//====<[ Prototypes: ]>=========================================================
 static int	ft_print_w_id(int nb, int len, t_data *data);
 static int	ft_print_prec_id(int nb, int nb_len, t_data *data);
 static int	ft_check_flags(long int nb, t_data *data);
 static void	ft_is_negative_inc(long int *nb, int *nb_len);
 
+//====<[ ft_putnbr_base_id: ]>==================================================
 int	ft_putnbr_base_id(long int nb, t_data *data, char *base)
 {
 	int			l;
@@ -31,7 +33,7 @@ int	ft_putnbr_base_id(long int nb, t_data *data, char *base)
 	if (nb < 0 && data->prec < 0 && data->flag == '0')
 		l += ft_print_char('-', NULL);
 	if (data && data->width && data->flag != '-' && data->type)
-			l += ft_print_w_id(nb, nb_len * (nb != 0 || data->prec < 0), data);
+		l += ft_print_w_id(nb, nb_len * (nb != 0 || data->prec < 0), data);
 	if (nb < 0 && !(data->prec < 0 && data->flag == '0'))
 		l += ft_print_char('-', NULL);
 	l += ft_print_prec_id(nb, nb_len, data);
@@ -40,10 +42,11 @@ int	ft_putnbr_base_id(long int nb, t_data *data, char *base)
 	else
 		nb_len = 0;
 	if (data && data->width && data->flag == '-')
-			l += ft_print_w_id(nb, nb_len, data);
+		l += ft_print_w_id(nb, nb_len, data);
 	return (l);
 }
 
+//====<[ ft_is_negative_inc: ]>=================================================
 static void	ft_is_negative_inc(long int *nb, int *nb_len)
 {
 	if ((*nb) < 0)
@@ -53,6 +56,7 @@ static void	ft_is_negative_inc(long int *nb, int *nb_len)
 	}
 }
 
+//====<[ ft_print_w_id: ]>======================================================
 static int	ft_print_w_id(int nb, int len, t_data *data)
 {
 	int		l;
@@ -75,6 +79,7 @@ static int	ft_print_w_id(int nb, int len, t_data *data)
 	return (l);
 }
 
+//====<[ ft_print_prec_id: ]>===================================================
 static int	ft_print_prec_id(int nb, int nb_len, t_data *data)
 {
 	int	l;
@@ -95,6 +100,7 @@ static int	ft_print_prec_id(int nb, int nb_len, t_data *data)
 	return (l);
 }
 
+//====<[ ft_check_flags: ]>=====================================================
 static int	ft_check_flags(long int nb, t_data *data)
 {
 	if (nb >= 0 && (data->flag == '+' || data->flag == ' '))

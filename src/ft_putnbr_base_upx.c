@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
+//====<[ Prototypes: ]>=========================================================
 static int	ft_print_prefix(int nb, t_data *data);
 static int	ft_print_prec_upx(int len, t_data *data);
 static int	ft_print_width_upx(int nb_len, t_data *data);
 
+//====<[ ft_putnbr_base_upx: ]>=================================================
 int	ft_putnbr_base_upx(unsigned long int nb, t_data *data, char *base)
 {
 	int	l;
@@ -41,6 +43,7 @@ int	ft_putnbr_base_upx(unsigned long int nb, t_data *data, char *base)
 	return (l);
 }
 
+//====<[ ft_print_prefix: ]>====================================================
 static int	ft_print_prefix(int nb, t_data *data)
 {
 	if (data->type == 'p' || (data->type == 'x' && data->flag == '#' && nb))
@@ -50,6 +53,7 @@ static int	ft_print_prefix(int nb, t_data *data)
 	return (0);
 }
 
+//====<[ ft_print_prec_upx: ]>==================================================
 static int	ft_print_prec_upx(int len, t_data *data)
 {
 	int	l;
@@ -66,6 +70,7 @@ static int	ft_print_prec_upx(int len, t_data *data)
 	return (l);
 }
 
+//====<[ ft_print_width_upx: ]>=================================================
 static int	ft_print_width_upx(int nb_len, t_data *data)
 {
 	int		prec;
