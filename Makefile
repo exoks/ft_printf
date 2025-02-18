@@ -11,10 +11,28 @@
 # **************************************************************************** #
 
 #====<[ Colors: ]>==============================================================
-GREEN			:= \033[1;32m
-RED				:= \033[1;31m
-CYAN			:= \033[1;36m
-NOCLR			:= \033[1;0m
+GREEN					= \033[1;32m
+RED						= \033[1;31m
+BLUE					= \033[34m
+CYAN					= \033[1;36m
+GRAY					= \033[0;90m
+PURPLE				= \033[0;35m
+YELLOW				= \033[0;93m
+BLACK  				= \033[20m
+MAGENTA 			= \033[35m
+WHITE  				= \033[37m
+PINK					= \033[0;38;5;199m
+ORANGE 				= \033[38;5;214m
+LIGHT_BLACK  	= \033[90m
+LIGHT_RED    	= \033[91m
+LIGHT_GREEN  	= \033[92m
+LIGHT_YELLOW 	= \033[93m
+LIGHT_BLUE   	= \033[94m
+LIGHT_MAGENTA = \033[95m
+LIGHT_CYAN   	= \033[96m
+LIGHT_WHITE  	= \033[97m
+LIGHT_BLUE		= \033[38;5;45m
+RESET					= \033[1;0m
 
 #====<[ CC compiler: ]>=========================================================
 CC				:= cc
@@ -22,6 +40,7 @@ CFLAGS		:= -Wall -Wextra -Werror
 RM				:= rm -rf
 
 #===<[ Sources: ]>==============================================================
+PROJECT		:= ft_printf
 NAME			:= libftprintf.a
 SRC_DIR		:= src
 OBJ_DIR		:= obj
@@ -38,9 +57,8 @@ SRC				:= $(addprefix $(SRC_DIR)/, $(SRC))
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_DIR)/ft_printf.o
-	@make -C $(LIBFT_DIR)	
 	@ar -rcs $@  $(OBJ_DIR)/* $(LIBFT_DIR)/obj/*
-	@echo "${GREEN}[OK]: ${CYAN}$(NAME) ✔️${NOCLR}"
+	@echo "${GREEN}[OK]: ${CYAN}$(NAME) ✔️${RESET}"
 
 bonus: clean $(NAME)
 
@@ -49,27 +67,42 @@ test:
 
 $(OBJ_DIR)/ft_printf.o: ft_printf.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@printf "$(GREEN)[OK]${NOCLR}: Compiling %-30s | $@\n" "$<"
+	@printf "$(GREEN)[OK]${RESET}: ${PINK}Compiling${RESET} %-26s| $@\n" "$<"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | .create_dirs $(LIBFT_DIR) 
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-	@printf "$(GREEN)[OK]${NOCLR}: Compiling %-30s | $@\n" "$<"
+	@printf "$(GREEN)[OK]${RESET}: ${PINK}Compiling${RESET} %-26s| $@\n" "$<"
 
-bonus: clean $(NAME)
+$(LIBFT_DIR):
+	@make -C $@
 
 $(OBJ_DIR):
 	@mkdir -p $@
 
 clean:
-	@${RM} $(OBJ_DIR) 
-	@make -C $(LIBFT_DIR) clean
-
-fclean:
-	@${RM} -rf $(NAME) $(OBJ_DIR) 
 	@make -C $(LIBFT_DIR) fclean
-	@echo "${GREEN}[OK]${NOCLR}: Cleaning ... $(NAME) ✔️"
+	@if [ -d $(OBJ_DIR) ]; then\
+		${RM} $(OBJ_DIR);\
+		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-26s${RESET}| ./%s\n"\
+					 "... " "$(PROJECT)/$(OBJ_DIR) ✔️";\
+	else\
+		printf "${RED}[KO]${RESET}: ${BLUE}Not Found %-26s${RESET}| ./%s\n"\
+					 "..." "$(PROJECT)/$(OBJ_DIR) ✖️";\
+	fi
+
+fclean: clean
+	@if [ -f $(NAME) ]; then\
+		${RM} $(NAME);\
+		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-26s${RESET}| ./%s\n"\
+					 "... " "$(PROJECT)/$(NAME) ✔️";\
+	else\
+		printf "${RED}[KO]${RESET}: ${BLUE}Not Found %-26s${RESET}| ./%s\n"\
+					 "..." "$(PROJECT)/$(NAME) ✖️";\
+	fi
 
 re: fclean all
 	
-.PHONY: all bonus test clean fclean re 
+.create_dirs: $(OBJ_DIR)
+
+.PHONY: all bonus test clean fclean re $(LIBFT_DIR)
 #===============================================================================
