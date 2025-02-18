@@ -44,8 +44,8 @@ PROJECT		:= ft_printf
 NAME			:= libftprintf.a
 SRC_DIR		:= src
 OBJ_DIR		:= obj
-LIBFT_DIR := libft
-INCLUDE		:= -I$(LIBFT_DIR) -Iinclude
+LIBFT			:= libft
+INCLUDE		:= -I$(LIBFT) -Iinclude
 
 SRC				:= ft_manage_flags.c ft_print_char.c ft_putnbr_base_id.c \
 						 ft_print_str.c ft_putnbr_base_upx.c ft_printf_utils.c
@@ -57,7 +57,7 @@ SRC				:= $(addprefix $(SRC_DIR)/, $(SRC))
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_DIR)/ft_printf.o
-	@ar -rcs $@  $(OBJ_DIR)/* $(LIBFT_DIR)/obj/*
+	@ar -rcs $@  $(OBJ_DIR)/* $(LIBFT)/obj/*
 	@echo "${GREEN}[OK]: ${CYAN}$(NAME) ✔️${RESET}"
 
 bonus: clean $(NAME)
@@ -69,18 +69,18 @@ $(OBJ_DIR)/ft_printf.o: ft_printf.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@printf "$(GREEN)[OK]${RESET}: ${PINK}Compiling${RESET} %-26s| $@\n" "$<"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | .create_dirs $(LIBFT_DIR) 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | .create_dirs $(LIBFT) 
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@printf "$(GREEN)[OK]${RESET}: ${PINK}Compiling${RESET} %-26s| $@\n" "$<"
 
-$(LIBFT_DIR):
+$(LIBFT):
 	@make -C $@
 
 $(OBJ_DIR):
 	@mkdir -p $@
 
 clean:
-	@make -C $(LIBFT_DIR) fclean
+	@make -C $(LIBFT) fclean
 	@if [ -d $(OBJ_DIR) ]; then\
 		${RM} $(OBJ_DIR);\
 		printf "${GREEN}[OK]${RESET}: ${ORANGE}Cleaning  %-26s${RESET}| ./%s\n"\
@@ -104,5 +104,5 @@ re: fclean all
 	
 .create_dirs: $(OBJ_DIR)
 
-.PHONY: all bonus test clean fclean re $(LIBFT_DIR)
+.PHONY: all bonus test clean fclean re $(LIBFT)
 #===============================================================================
