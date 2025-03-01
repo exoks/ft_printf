@@ -35,23 +35,23 @@ LIGHT_BLUE		= \033[38;5;45m
 RESET					= \033[1;0m
 
 #====<[ CC compiler: ]>=========================================================
-CC				:= cc
-CFLAGS		:= -Wall -Wextra -Werror
-RM				:= rm -rf
+CC            := cc
+CFLAGS        := -Wall -Wextra -Werror
+RM            := rm -rf
 
 #===<[ Sources: ]>==============================================================
-PROJECT		:= ft_printf
-NAME			:= libftprintf.a
-SRC_DIR		:= src
-OBJ_DIR		:= obj
-LIBFT			:= libft
-INCLUDE		:= -I$(LIBFT)/include -Iinclude
+PROJECT       := ft_printf
+NAME          := libftprintf.a
+SRC_DIR       := src
+OBJ_DIR       := obj
+LIBFT         := libft
+INCLUDE       := -I$(LIBFT)/include -Iinclude
 
-SRC				:= ft_manage_flags.c ft_print_char.c ft_putnbr_base_id.c \
-						 ft_print_str.c ft_putnbr_base_upx.c ft_printf_utils.c
+SRC           := ft_manage_flags.c ft_print_char.c ft_putnbr_base_id.c \
+                 ft_print_str.c ft_putnbr_base_upx.c ft_printf_utils.c
 
-OBJ				:= $(addprefix $(OBJ_DIR)/, ${SRC:.c=.o})
-SRC				:= $(addprefix $(SRC_DIR)/, $(SRC))
+OBJ           := $(addprefix $(OBJ_DIR)/, ${SRC:.c=.o})
+SRC           := $(addprefix $(SRC_DIR)/, $(SRC))
 
 #====<[ Rules: ]>===============================================================
 all: signature $(NAME)
