@@ -68,9 +68,9 @@ SRC_BNS		    := $(addprefix $(SRC_DIR)/, $(SRC))
 #====<[ Rules: ]>===============================================================
 all: static 
 
-static: signature $(STATIC_LIB)
+static: $(STATIC_LIB)
 
-shared: signature $(SHARED_LIB)
+shared: $(SHARED_LIB)
 
 $(STATIC_LIB): $(OBJ) $(OBJ_BNS) 
 	@ar -rcs $@ $^
@@ -83,10 +83,6 @@ $(SHARED_LIB): $(OBJ) $(OBJ_BNS)
 bonus: $(OBJ_BNS)
 	@ar -rcs $(STATIC_LIB) $<
 	@echo "${GREEN}[OK]: ${CYAN}$(STATIC_LIB) ✔️${RESET}"
-
-signature:
-	@printf "${GRAY}%19s${RESET}\n"	"𓆩♕𓆪"
-	@printf "${GRAY}%s${RESET}\n"		"𓄂 oussama ezzaou𓆃  "
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) 
 	@$(CC) $(CFLAGS) $(INCLUDE) -fPIC -c $< -o $@
@@ -127,5 +123,5 @@ re: fclean all
 
 .SUFFIXES: .o .c .a .so 
 
-.PHONY: all static shared bonus clean fclean re signature
+.PHONY: all static shared bonus clean fclean re
 #===============================================================================
