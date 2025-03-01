@@ -53,6 +53,7 @@ SRC           := ft_manage_flags.c ft_print_char.c ft_putnbr_base_id.c \
 OBJ           := $(addprefix $(OBJ_DIR)/, ${SRC:.c=.o})
 SRC           := $(addprefix $(SRC_DIR)/, $(SRC))
 
+CFILE         := ./tests/tests.c
 #====<[ Rules: ]>===============================================================
 all: signature $(NAME)
 
@@ -66,8 +67,11 @@ signature:
 
 bonus: clean $(NAME)
 
+# Rule usage:
+# 1|=> [ make test | It will use default CFILE=./tests/tests.c]
+# 2|=> [ make test CFILE=<file_to_compile_with_libftprintf.a> ]
 test:
-	gcc main.c libftprintf.a -Iinclude -Ilibft && ./a.out
+	@$(CC) $(CFLAGS) $(INCLUDE) $(CFILE) $(NAME) -o foo && ./foo
 
 $(OBJ_DIR)/ft_printf.o: ft_printf.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
@@ -108,5 +112,5 @@ re: fclean all
 	
 .create_dirs: $(OBJ_DIR)
 
-.PHONY: all bonus clean fclean re $(LIBFT) signature
+.PHONY: all bonus clean fclean test re $(LIBFT) signature
 #===============================================================================
