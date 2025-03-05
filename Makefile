@@ -6,7 +6,7 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:55:24 by oezzaou           #+#    #+#              #
-#    Updated: 2022/10/12 19:04:11 by oezzaou          ###   ########.fr        #
+#    Updated: 2025/03/05 07:56:45 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,7 @@ clean:
 fclean: clean
 	@if [ -f $(NAME) ]; then\
 		${RM} $(NAME);\
+		${RM} ./foo\
 		printf "${GREEN}[OK]${RESET} ${ORANGE}Cleaning  %-26s${RESET}| ./%s\n"\
 					 "... " "$(PROJECT)/$(NAME) ✔️";\
 	else\
