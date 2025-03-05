@@ -6,7 +6,7 @@
 #    By: oezzaou <oezzaou@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/05 15:55:24 by oezzaou           #+#    #+#              #
-#    Updated: 2022/10/10 07:56:45 by oezzaou          ###   ########.fr        #
+#    Updated: 2025/03/05 08:43:57 by oezzaou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,8 @@ bonus: clean $(NAME)
 # Rule usage:
 # 1|=> [ make tests | It will use default CFILE=./tests/tests.c]
 # 2|=> [ make tests CFILE=<file_to_compile_with_libftprintf.a> ]
-tests:
+tests: 
+	@make -s -C . 
 	@$(CC) $(CFLAGS) $(INCLUDE) $(CFILE) $(NAME) -o foo && ./foo
 
 $(OBJ_DIR)/ft_printf.o: ft_printf.c
