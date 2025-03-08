@@ -72,7 +72,7 @@ bonus: clean $(NAME)
 # 2|=> [ make tests CFILE=<file_to_compile_with_libftprintf.a> ]
 tests: 
 	@make -s -C . 
-	@$(CC) $(CFLAGS) $(INCLUDE) $(CFILE) $(NAME) -o foo && ./foo
+	$(CC) $(CFLAGS) $(INCLUDE) $(CFILE) $(NAME) -o foo && ./foo
 
 $(OBJ_DIR)/ft_printf.o: ft_printf.c
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
